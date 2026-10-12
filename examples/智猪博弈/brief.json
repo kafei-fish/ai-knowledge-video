@@ -1,0 +1,44 @@
+{
+ "account": "Leo的反常识课",
+ "series": "博弈论",
+ "episode": "EP.04",
+ "title": "智猪博弈",
+ "orientation": "landscape",
+ "signature": "",
+ "header": {
+  "hook": "大猪干活，小猪躺赢",
+  "start": 0.2,
+  "end": 3.4
+ },
+ "style": {
+  "look": "电影感写实，暖棕低饱和，侧逆光，35mm 胶片颗粒，浅景深",
+  "clip_seconds": 5,
+  "clip_resolution": "720p"
+ },
+ "characters": [
+  {
+   "id": "大猪",
+   "desc": "一头体型壮硕的成年粉白色大猪，耳朵竖起",
+   "ref": ""
+  },
+  {
+   "id": "小猪",
+   "desc": "一头瘦小的粉色小猪，耳朵下垂",
+   "ref": ""
+  }
+ ],
+ "voice": {
+  "provider": "volc",
+  "voice": "",
+  "speed": 1.0,
+  "edge_voice": "zh-CN-YunjianNeural"
+ },
+ "music": {
+  "mood": "tense"
+ },
+ "cover": {
+  "shot": "s04",
+  "hook": "大猪干活，小猪躺赢"
+ },
+ "badge": false
+}
