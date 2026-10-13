@@ -9,6 +9,7 @@ tense 适合推理、悬疑（博弈论、认知偏差），warm 适合情感（
 产出：EP/build/music.wav
 """
 import argparse
+import json
 import sys
 import wave
 from pathlib import Path
@@ -99,6 +100,25 @@ def main():
     if len(segs) > 1:
         put(segs[-1]["at"] - 1.4, riser(), 0.10)
         put(segs[-1]["at"] - 0.05, impact(2.2), 0.4)
+
+    # 卡点：字卡、大数字出现时一记重音，弹字（pop）和矩阵亮格时一记轻音
+    def chime(f=880.0, d=1.6):
+        t = np.arange(int(d * SR)) / SR
+        x = sum(g * np.sin(2 * np.pi * f * m * t) * np.exp(-t * dk) for m, g, dk in [(1, 1, 1.8), (2.76, 0.4, 3.5), (5.4, 0.2, 6)])
+        return x * np.clip(t / 0.003, 0, 1)
+
+    prev_cells = None
+    for s in tl.get("shots", [])[1:]:
+        at = s["start"]
+        if s["type"] in ("card", "number"):
+            put(at - 0.03, impact(1.6), 0.35)
+            put(at + 0.02, chime(660), 0.06)
+        if s.get("pop"):
+            put(at + 0.37, impact(1.0), 0.22)
+        if s["type"] == "matrix" and s.get("highlight"):
+            same = prev_cells == json.dumps(s.get("cells"))
+            put(at + (0.1 if same else 0.4), chime(988 if same else 784, 1.2), 0.07)
+        prev_cells = json.dumps(s.get("cells")) if s["type"] == "matrix" else None
 
     fade = int(3.0 * SR)
     for ch in (L, R):

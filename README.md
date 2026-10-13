@@ -19,6 +19,17 @@
 
 打 zip：在仓库上一级目录运行 `zip -r ai-knowledge-video.zip ai-knowledge-video -x '*/.git/*'`，或在 GitHub 页面下载 ZIP。
 
+## 两种渲染引擎
+
+| | 基础版（ffmpeg） | 进阶版（Remotion） |
+| --- | --- | --- |
+| 效果 | 镜头推近、交叉转场、字幕、信息图 | 再加：矩阵逐格亮起、逐字字幕、砸字、滚动数字、胶片质感 |
+| 环境 | Python + ffmpeg | 再加 Node.js 18+ |
+| 80 秒成片耗时 | 约 2–5 分钟 | 约 5–15 分钟 |
+| 授权 | 无限制 | Remotion 对个人和小团队免费，公司可能需买授权（以官网为准） |
+
+两个版本用同一套工程文件，随时切换。对 AI 说"用进阶版渲染"即可。
+
 ## 第一次使用
 
 对 AI 说：
@@ -56,8 +67,10 @@ scripts/
   timeline.py             按配音排时间线、对字幕
   music.py                生成无版权配乐
   cards.py                信息图和字卡（收益矩阵、条形图、大数字）
-  compose.py              合成成片
+  compose.py              合成成片（基础版）
+  remotion_render.py      合成成片（进阶版，调用 remotion/）
   cover.py                封面
+remotion/                 进阶版渲染引擎（Remotion 工程，一般不用改）
 examples/智猪博弈/          一期已发布作品的工程文件
 ```
 

@@ -100,6 +100,22 @@ python3 $SKILL/scripts/compose.py $EP
 python3 $SKILL/scripts/cover.py $EP
 ```
 
+### 进阶版：Remotion 动画渲染（可选）
+
+用户要更精致的效果、或说"用进阶版 / Remotion 渲染"时，在第 6 步的 timeline、music 之后改用：
+```bash
+python3 $SKILL/scripts/remotion_render.py $EP --still 24     # 先导出第 24 秒的一帧看效果，几秒出图
+python3 $SKILL/scripts/remotion_render.py $EP                # 全片，输出 out/<名字>_进阶版.mp4
+```
+和基础版的区别：收益矩阵逐格亮起、字幕逐字浮现、片头标识从中间收到角上、字卡砸字、大数字滚动、条形图逐条长出、胶片颗粒和暗角。
+同一套 brief / script / storyboard 两个版本通用，不用改。分镜里可以多用两个字段：
+- `"pop": "+10 份食物"`：在这个镜头上方砸出一行弹字，`"pop_color": "red"` 变红色
+- `brief.header.style`：`"center"`（默认，片头大字居中后收到左上角）或 `"corner"`（第 0 帧就在角上，开场更干净）
+
+要求：Node.js 18 以上（`check_env.py` 会检查）。第一次运行自动安装依赖，需要 1–3 分钟；全片渲染在普通笔记本上约 5–15 分钟。
+检查方法：抽几个关键时间点用 `--still` 出图逐张看，确认没有叠字，再渲全片。浏览器下载失败时，设置环境变量 `REMOTION_BROWSER` 指向本机 Chrome。
+Remotion 对个人和小团队免费，公司用户可能需要购买授权，以 Remotion 官网许可说明为准；用户是公司时提醒一句。
+
 ## 第 7 步：交付
 
 告诉用户：

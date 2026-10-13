@@ -48,6 +48,10 @@ print(("✅ " if os.environ.get("ARK_API_KEY") else "⚪ ") + "即梦接口 ARK_
 for k in ["ARK_IMAGE_MODEL", "ARK_VIDEO_MODEL"]:
     print(("✅ " if os.environ.get(k) else "⚪ ") + k)
 print(("✅ " if os.environ.get("VOLC_TTS_APPID") and os.environ.get("VOLC_TTS_TOKEN") else "⚪ ") + "豆包语音 VOLC_TTS_APPID / VOLC_TTS_TOKEN")
+node = shutil.which("node")
+nv = subprocess.run([node, "-v"], capture_output=True, text=True).stdout.strip() if node else ""
+node_ok = bool(nv) and int(nv.lstrip("v").split(".")[0]) >= 18
+print(("✅ " if node_ok else "⚪ ") + f"Node.js ≥ 18（进阶版 Remotion 渲染需要）{'：' + nv if nv else '，未安装：Mac 用 brew install node，或到 nodejs.org 下载'}")
 print(("✅ " if shutil.which("edge-tts") else "⚪ ") + "edge-tts（免费配音，pip install edge-tts）")
 try:
     importlib.import_module("faster_whisper")

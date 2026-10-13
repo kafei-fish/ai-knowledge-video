@@ -1,0 +1,18 @@
+{
+  "name": "ai-knowledge-video-remotion",
+  "private": true,
+  "description": "进阶版渲染引擎：读取单期工程文件，用 Remotion 渲染带动画的成片",
+  "scripts": {
+    "studio": "remotion studio src/index.ts"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.525",
+    "remotion": "4.0.525",
+    "react": "19.1.9",
+    "react-dom": "19.1.9"
+  },
+  "devDependencies": {
+    "@types/react": "19.1.8",
+    "typescript": "5.8.3"
+  }
+}
